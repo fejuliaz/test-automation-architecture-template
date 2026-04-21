@@ -22,4 +22,31 @@ export class AuthSteps {
     async verifySuccessfulLogin(): Promise<void> {
         await this.ui.asserts.verifyTextContains(LoginLocators.welcomeMessage, 'You logged into a secure area!');
     }
+
+    async verifyLoginPageLoaded(): Promise<void> {
+        await this.ui.asserts.verifyElementVisible(LoginLocators.emailInput);
+        await this.ui.asserts.verifyElementVisible(LoginLocators.passwordInput);
+        await this.ui.asserts.verifyElementEnabled(LoginLocators.submitButton);
+    }
+
+    async verifyLoginPageUrl(): Promise<void> {
+        await this.ui.asserts.verifyUrl(/\/login/);
+    }
+
+    async verifyLoginPageTitle(): Promise<void> {
+        await this.ui.asserts.verifyPageTitle(/The Internet/);
+    }
+
+    async verifyFailedLogin(): Promise<void> {
+        await this.ui.asserts.verifyElementVisible(LoginLocators.errorMessage);
+        await this.ui.asserts.verifyTextContains(LoginLocators.errorMessage, 'Your username is invalid!');
+    }
+
+    async verifyEmailInputIsEmpty(): Promise<void> {
+        await this.ui.asserts.verifyInputValue(LoginLocators.emailInput, '');
+    }
+
+    async verifySubmitButtonAttribute(): Promise<void> {
+        await this.ui.asserts.verifyAttributeEquals(LoginLocators.submitButton, 'type', 'submit');
+    }
 }
