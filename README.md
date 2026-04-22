@@ -39,7 +39,7 @@ tests/            # Test specs — business intent only
 
 ## Migrating to Cypress
 
-To swap Playwright for Cypress, you only need to replace the internals of `src/core/`. Everything else — tests, steps, locators, pages — remains unchanged.
+To swap Playwright for Cypress, you only need to replace the internals of `src/core/`. Everything else - tests, steps, locators, pages - remains unchanged.
 
 Every class in `src/core/` has inline comments showing the Cypress equivalent:
 
@@ -50,7 +50,7 @@ async click(selector: string): Promise<void> {
 }
 ```
 
-TypeScript's structural typing means no interfaces are required — as long as the method signatures in your Cypress implementation match the existing ones, all Steps will compile and work without modification.
+TypeScript's structural typing means no interfaces are required - as long as the method signatures in your Cypress implementation match the existing ones, all Steps will compile and work without modification.
 
 ---
 
@@ -84,20 +84,20 @@ npx playwright show-report      # Open last HTML report
 
 The `src/steps/` layer is intentionally written in business language, making it **Gherkin-compatible by design**. Whether to add a full Cucumber integration depends on your team:
 
-Non-engineers (POs, BAs) read or write test scenarios | Add Gherkin — the business value justifies the overhead |
+Non-engineers (POs, BAs) read or write test scenarios | Add Gherkin - the business value justifies the overhead |
 
-Engineering-only team | Skip it — your step methods already read as plain English |
+Engineering-only team | Skip it - your step methods already read as plain English |
 
 
 ### How to add Gherkin if you need it
 
-**Step 1 — Install dependencies**
+**Step 1 - Install dependencies**
 
 ```bash
 npm install -D @cucumber/cucumber playwright-bdd
 ```
 
-**Step 2 — Create a feature file**
+**Step 2 - Create a feature file**
 
 ```
 tests/
@@ -113,9 +113,9 @@ Feature: Authentication
     Then I should see the secure area welcome message
 ```
 
-**Step 3 — Create step definitions**
+**Step 3 - Create step definitions**
 
-The step definitions are thin wrappers — they just delegate to your existing Steps classes:
+The step definitions are thin wrappers - they just delegate to your existing Steps classes:
 
 ```
 src/
@@ -145,7 +145,7 @@ Then('I should see the secure area welcome message', async function () {
 });
 ```
 
-**Step 4 — Configure the Cucumber runner**
+**Step 4 - Configure the Cucumber runner**
 
 ```
 cucumber.config.ts
@@ -160,7 +160,7 @@ export default {
 };
 ```
 
-**Step 5 — Add a script to `package.json`**
+**Step 5 - Add a script to `package.json`**
 
 ```json
 "test:bdd": "cucumber-js --config cucumber.config.ts"
@@ -168,7 +168,7 @@ export default {
 
 ### Key point
 
-Notice that `AuthSteps`, `NavigationSteps`, and all locators are **reused unchanged**. The Gherkin layer is purely a translation layer on top — adding it does not require touching any existing framework code.
+Notice that `AuthSteps`, `NavigationSteps`, and all locators are **reused unchanged**. The Gherkin layer is purely a translation layer on top - adding it does not require touching any existing framework code.
 
 ---
 
