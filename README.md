@@ -1,6 +1,6 @@
 # Test Automation Architecture Template
 
-A proof-of-concept repository demonstrating the **Clean Architecture** approach to UI test automation. Designed to completely decouple test intent from the underlying execution tool — not tied to Playwright, Cypress, or any other framework.
+A proof-of-concept repository demonstrating the **Clean Architecture** approach to UI test automation. Designed to completely decouple test intent from the underlying execution tool - not tied to Playwright, Cypress, or any other framework.
 
 ---
 
@@ -10,7 +10,7 @@ A proof-of-concept repository demonstrating the **Clean Architecture** approach 
 |---|---|---|
 | Tests | `tests/` | Pure business intent. No `page.locator()` or `cy.get()` allowed here. |
 | Locators | `src/locators/` | HTML/CSS selectors only. No logic. |
-| Pages | `src/pages/` | Route metadata — URLs, API endpoints, expected titles. |
+| Pages | `src/pages/` | Route metadata - URLs, API endpoints, expected titles. |
 | Steps | `src/steps/` | Business workflows. Combines Locators, Pages, and UIClient. |
 | Core | `src/core/` | The **only** place Playwright/Cypress syntax exists. |
 | Config | `src/config/` | Environment variables and base URLs. |
@@ -22,7 +22,7 @@ A proof-of-concept repository demonstrating the **Clean Architecture** approach 
 
 ```
 src/
-  core/           # Tool wrapper — the ONLY place Playwright syntax lives
+  core/           # Tool wrapper - the ONLY place Playwright syntax lives
   locators/       # CSS/attribute selectors
   pages/          # Page route metadata
   steps/          # Business-language workflows
@@ -32,7 +32,7 @@ src/
   utils/          # Shared helpers
 test-data/
   qa/             # Test data per environment
-tests/            # Test specs — business intent only
+tests/            # Test specs - business intent only
 ```
 
 ---
